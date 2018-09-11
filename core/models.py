@@ -19,7 +19,12 @@ class PontoTuristico(models.Model):
         Avaliacao, verbose_name='Avaliações', related_name='pontos_turisticos', blank=True, null=True
     )
     enderecos = models.ForeignKey(
-        Endereco, verbose_name='Endereços', related_name='pontos_turisticos', on_delete=models.CASCADE
+        Endereco,
+        verbose_name='Endereços',
+        related_name='pontos_turisticos',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
     )
     criado_em = models.DateTimeField('Criado em', auto_now_add=True)
     atualizado_em = models.DateTimeField('Atualizado em', auto_now_add=True)
