@@ -2,6 +2,7 @@ from django.db import models
 from atracoes.models import Atracao
 from comentarios.models import Comentario
 from avaliacoes.models import Avaliacao
+from enderecos.models import Endereco
 
 
 class PontoTuristico(models.Model):
@@ -12,10 +13,13 @@ class PontoTuristico(models.Model):
         Atracao, verbose_name='Atrações', related_name='pontos_turisticos'
     )
     comentarios = models.ManyToManyField(
-        Comentario, verbose_name='Comentários', related_name='pontos_turisticos'
+        Comentario, verbose_name='Comentários', related_name='pontos_turisticos', blank=True, null=True
     )
     avaliacoes = models.ManyToManyField(
-        Avaliacao, verbose_name='Avaliações', related_name='pontos_turisticos'
+        Avaliacao, verbose_name='Avaliações', related_name='pontos_turisticos', blank=True, null=True
+    )
+    enderecos = models.ForeignKey(
+        Endereco, verbose_name='Endereços', related_name='pontos_turisticos', on_delete=models.CASCADE
     )
     criado_em = models.DateTimeField('Criado em', auto_now_add=True)
     atualizado_em = models.DateTimeField('Atualizado em', auto_now_add=True)
