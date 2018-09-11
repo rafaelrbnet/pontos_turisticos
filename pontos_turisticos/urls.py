@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from core.api.viewsets import PontoTuristicoViewSet
+from core.api.viewsets import CurrentUserViewSet
 from atracoes.api.viewsets import AtracaoViewSet
 from enderecos.api.viewsets import EnderecoViewSet
 from comentarios.api.viewsets import ComentarioViewSet
@@ -29,6 +30,7 @@ router.register(r'atracao', AtracaoViewSet)
 router.register(r'endereco', EnderecoViewSet)
 router.register(r'comentario', ComentarioViewSet)
 router.register(r'avaliacao', AvaliacaoViewSet)
+router.register(r'usuario', CurrentUserViewSet)
 
 urlpatterns = [
     path('',include(router.urls)),
