@@ -20,6 +20,7 @@ from core.api.viewsets import PontoTuristicoViewSet
 from atracoes.api.viewsets import AtracaoViewSet
 from enderecos.api.viewsets import EnderecoViewSet
 from comentarios.api.viewsets import ComentarioViewSet
+from avaliacoes.api.viewsets import AvaliacaoViewSet
 
 """ Particularidade do Django Rest Framework """
 router = routers.DefaultRouter()
@@ -27,6 +28,7 @@ router.register(r'pontoturistico', PontoTuristicoViewSet)
 router.register(r'atracao', AtracaoViewSet)
 router.register(r'endereco', EnderecoViewSet)
 router.register(r'comentario', ComentarioViewSet)
+router.register(r'avaliacao', AvaliacaoViewSet)
 
 urlpatterns = [
     path('',include(router.urls)),
