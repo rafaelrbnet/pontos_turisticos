@@ -13,10 +13,10 @@ class PontoTuristico(models.Model):
         Atracao, verbose_name='Atrações', related_name='pontos_turisticos'
     )
     comentarios = models.ManyToManyField(
-        Comentario, verbose_name='Comentários', related_name='pontos_turisticos', blank=True, null=True
+        Comentario, verbose_name='Comentários', related_name='pontos_turisticos', blank=True
     )
     avaliacoes = models.ManyToManyField(
-        Avaliacao, verbose_name='Avaliações', related_name='pontos_turisticos', blank=True, null=True
+        Avaliacao, verbose_name='Avaliações', related_name='pontos_turisticos', blank=True
     )
     enderecos = models.ForeignKey(
         Endereco,

@@ -25,7 +25,7 @@ from avaliacoes.api.viewsets import AvaliacaoViewSet
 
 """ Particularidade do Django Rest Framework """
 router = routers.DefaultRouter()
-router.register(r'pontoturistico', PontoTuristicoViewSet)
+router.register(r'pontoturistico', PontoTuristicoViewSet, base_name='PontoTuristico')
 router.register(r'atracao', AtracaoViewSet)
 router.register(r'endereco', EnderecoViewSet)
 router.register(r'comentario', ComentarioViewSet)
