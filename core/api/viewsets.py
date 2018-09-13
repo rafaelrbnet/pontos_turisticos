@@ -31,6 +31,16 @@ class PontoTuristicoViewSet(ModelViewSet):
 
         return Response({'Criado com sucesso': serializer.data}, status=status.HTTP_201_CREATED, headers=headers)
 
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({'Deletado com sucesso'}, status=status.HTTP_204_NO_CONTENT)
+
+    def update(self, request, *args, **kwargs):
+        pass
+
+    def partial_update(self, request, *args, **kwargs):
+        pass
 
 class CurrentUserViewSet(ReadOnlyModelViewSet):
     queryset = User.objects.all()
