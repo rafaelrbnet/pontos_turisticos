@@ -6,6 +6,7 @@ class Atracao(models.Model):
     descricao = models.TextField('Descrição')
     horario_func = models.TextField('Horário de Funcionamento')
     idede_minima = models.IntegerField('Idade Minima')
+    foto = models.ImageField('Foto', upload_to='atracoes', null=True, blank=True)
     criado_em = models.DateTimeField('Criado em', auto_now_add=True)
     atualizado_em = models.DateTimeField('Atualizado em', auto_now_add=True)
 

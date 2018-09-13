@@ -26,6 +26,7 @@ class PontoTuristico(models.Model):
         blank=True,
         null=True
     )
+    foto = models.ImageField('Foto', upload_to='pontos_turisticos', null=True, blank=True)
     criado_em = models.DateTimeField('Criado em', auto_now_add=True)
     atualizado_em = models.DateTimeField('Atualizado em', auto_now_add=True)
 

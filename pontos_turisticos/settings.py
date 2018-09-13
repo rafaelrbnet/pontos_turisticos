@@ -126,6 +126,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = 'imagens'
+
+MEDIA_URL = '/imagens/'
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
