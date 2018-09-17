@@ -1,4 +1,3 @@
-from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
@@ -30,8 +29,6 @@ class PontoTuristicoViewSet(ModelViewSet):
             queryset = PontoTuristico.objects.filter(descricao__iexact=descricao)
 
         return queryset
-
-
 
     @action(methods=['get'], detail=True)
     def denunciar(self, request, *args, **kwargs):
