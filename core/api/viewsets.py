@@ -11,6 +11,7 @@ class PontoTuristicoViewSet(ModelViewSet):
     serializer_class = PontoTuristicoSerializer
     filter_backends = (SearchFilter,)
     search_fields = ('nome', 'descricao', 'enderecos__localizacao')
+    # lookup_field = 'nome' estes tipo de campo deve ser conswiderado como unique. ex CPF
 
     def get_queryset(self):
         id = self.request.query_params.get('id', None)
@@ -38,3 +39,6 @@ class PontoTuristicoViewSet(ModelViewSet):
 class CurrentUserViewSet(ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = CurrentUserSerializer
+    filter_backends = (SearchFilter,)
+    search_fields = ('first_name', 'last_name', 'username','email')
+    lookup_field = 'username'
