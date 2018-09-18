@@ -9,6 +9,8 @@ class Endereco(models.Model):
     pais = models.CharField('País', max_length=50)
     latitude = models.DecimalField('Latitude', max_digits=20, decimal_places=7, blank=True, null=True)
     longitude = models.DecimalField('Longitude', max_digits=20, decimal_places=7, blank=True, null=True)
+    criado_em = models.DateTimeField('Criado em', auto_now_add=True)
+    atualizado_em = models.DateTimeField('Atualizado em', auto_now_add=True)
 
     def __str__(self):
         return self.localizacao

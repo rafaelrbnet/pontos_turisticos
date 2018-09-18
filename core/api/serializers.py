@@ -1,3 +1,4 @@
+from rest_framework.fields import SerializerMethodField, DateTimeField
 from rest_framework.serializers import ModelSerializer
 from django.contrib.auth.models import User
 from core.models import PontoTuristico
@@ -12,13 +13,19 @@ class PontoTuristicoSerializer(ModelSerializer):
     comentarios = ComentarioSerializer(many=True)
     avaliacoes = AvaliacaoSerializer(many=True)
     enderecos = EnderecoSerializer()
+    descricao_completa = SerializerMethodField()
+    criado_em = DateTimeField(read_only=True, format="%d/%m/%Y %H:%M:%S")
 
     class Meta:
         model = PontoTuristico
         fields = (
             'id', 'nome', 'descricao', 'aprovado', 'foto',
-            'atracoes', 'comentarios', 'avaliacoes', 'enderecos'
+            'atracoes', 'comentarios', 'avaliacoes', 'enderecos',
+            'descricao_completa', 'criado_em'
         )
+
+    def get_descricao_completa(self, obj):
+        return '{} - {}'.format(obj.nome, obj.descricao)
 
 
 class CurrentUserSerializer(ModelSerializer):
