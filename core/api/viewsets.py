@@ -1,5 +1,7 @@
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from django.contrib.auth.models import User
@@ -12,6 +14,8 @@ class PontoTuristicoViewSet(ModelViewSet):
     filter_backends = (SearchFilter,)
     search_fields = ('nome', 'descricao', 'enderecos__localizacao')
     # lookup_field = 'nome' estes tipo de campo deve ser conswiderado como unique. ex CPF
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
 
     def get_queryset(self):
         id = self.request.query_params.get('id', None)
@@ -42,3 +46,5 @@ class CurrentUserViewSet(ReadOnlyModelViewSet):
     filter_backends = (SearchFilter,)
     search_fields = ('first_name', 'last_name', 'username','email')
     lookup_field = 'username'
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
