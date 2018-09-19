@@ -25,7 +25,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
-ALLOWED_HOSTS = ['https://api-pontos-turisticos-v1.herokuapp.com']
+ALLOWED_HOSTS = ['api-pontos-turisticos-v1.herokuapp.com']
 
 
 # Application definition
