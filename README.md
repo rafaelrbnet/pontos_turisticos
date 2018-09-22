@@ -10,6 +10,9 @@ Projeto de uma API para pontos turísticos
 * Atualização de um ponto turístico por usuário autorizados - Via token (permissão especial)
 * Declaração de um ponto turístico por usuários autorizados - Via token (permissão especial)
 
+Documentação "swagger"
+https://api-pontos-turisticos-v1.herokuapp.com/docs
+
 Demonstração
 https://api-pontos-turisticos-v1.herokuapp.com/
 

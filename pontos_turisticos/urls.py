@@ -25,6 +25,8 @@ from atracoes.api.viewsets import AtracaoViewSet
 from enderecos.api.viewsets import EnderecoViewSet
 from comentarios.api.viewsets import ComentarioViewSet
 from avaliacoes.api.viewsets import AvaliacaoViewSet
+from rest_framework_swagger.views import get_swagger_view
+
 
 """ Particularidade do Django Rest Framework """
 router = routers.DefaultRouter()
@@ -35,8 +37,11 @@ router.register(r'comentario', ComentarioViewSet)
 router.register(r'avaliacao', AvaliacaoViewSet)
 router.register(r'usuario', CurrentUserViewSet)
 
+schema_view = get_swagger_view(title='API Pontos Turísticos')
+
 urlpatterns = [
     path('', include(router.urls)),
+    path('docs/', schema_view),
     path('admin/', admin.site.urls),
     path('api-token-auth/', obtain_auth_token),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
