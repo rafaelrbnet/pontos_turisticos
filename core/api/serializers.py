@@ -6,11 +6,17 @@ from atracoes.models import Atracao
 from comentarios.models import Comentario
 from avaliacoes.models import Avaliacao
 from enderecos.models import Endereco
-from core.models import PontoTuristico
+from core.models import PontoTuristico, DocIdentificacao
 from atracoes.api.serializers import AtracaoSerializer
 from comentarios.api.serializers import ComentarioSerializer
 from avaliacoes.api.serializers import AvaliacaoSerializer
 from enderecos.api.serializers import EnderecoSerializer
+
+
+class DocIdentificacaoSerializer(ModelSerializer):
+    class Meta:
+        model = DocIdentificacao
+        fields = '__all__'
 
 
 class PontoTuristicoSerializer(ModelSerializer):
@@ -18,6 +24,7 @@ class PontoTuristicoSerializer(ModelSerializer):
     comentarios = ComentarioSerializer(many=True)
     avaliacoes = AvaliacaoSerializer(many=True)
     enderecos = EnderecoSerializer()
+    doc_identificacao = DocIdentificacaoSerializer()
     descricao_completa = SerializerMethodField(read_only=True)
     criado_em = DateTimeField(read_only=True, format="%d/%m/%Y %H:%M:%S")
 
@@ -25,7 +32,7 @@ class PontoTuristicoSerializer(ModelSerializer):
         model = PontoTuristico
         fields = (
             'id', 'nome', 'descricao', 'aprovado', 'foto',
-            'atracoes', 'comentarios', 'avaliacoes', 'enderecos',
+            'atracoes', 'comentarios', 'avaliacoes', 'enderecos', 'doc_identificacao',
             'descricao_completa', 'criado_em'
         )
 
@@ -49,10 +56,12 @@ class PontoTuristicoSerializer(ModelSerializer):
         enderecos = validated_data['enderecos']
         comentarios = validated_data['comentarios']
         avaliacoes = validated_data['avaliacoes']
+        doc = validated_data['doc_identificacao']
         del validated_data['atracoes']
         del validated_data['enderecos']
         del validated_data['comentarios']
         del validated_data['avaliacoes']
+        del validated_data['doc_identificacao']
 
         ponto = PontoTuristico.objects.create(**validated_data)
 
@@ -62,6 +71,9 @@ class PontoTuristicoSerializer(ModelSerializer):
 
         end = Endereco.objects.create(**enderecos)
         ponto.enderecos = end
+
+        doci = DocIdentificacao.objects.create(**doc)
+        ponto.doc_identificacao = doci
 
         ponto.save()
         return ponto

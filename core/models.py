@@ -5,6 +5,10 @@ from avaliacoes.models import Avaliacao
 from enderecos.models import Endereco
 
 
+class DocIdentificacao(models.Model):
+    descricao = models.CharField('Descrição', max_length=100)
+
+
 class PontoTuristico(models.Model):
     nome = models.CharField('Nome', max_length=150)
     descricao = models.TextField('Descrição')
@@ -21,6 +25,14 @@ class PontoTuristico(models.Model):
     enderecos = models.ForeignKey(
         Endereco,
         verbose_name='Endereços',
+        related_name='pontos_turisticos',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
+    doc_identificacao = models.OneToOneField(
+        DocIdentificacao,
+        verbose_name='Documento de identificação',
         related_name='pontos_turisticos',
         on_delete=models.CASCADE,
         blank=True,

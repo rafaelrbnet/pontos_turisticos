@@ -44,7 +44,7 @@ class CurrentUserViewSet(ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = CurrentUserSerializer
     filter_backends = (SearchFilter,)
-    search_fields = ('first_name', 'last_name', 'username','email')
+    search_fields = ('first_name', 'last_name', 'username', 'email')
     lookup_field = 'username'
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
