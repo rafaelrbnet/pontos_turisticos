@@ -8,4 +8,4 @@ class AvaliacaoSerializer(ModelSerializer):
 
     class Meta:
         model = Avaliacao
-        fields = ('id', 'usuario', 'comentario', 'nota')
+        fields = ('id', 'usuario', 'comentario', 'nota', 'criado_em')
